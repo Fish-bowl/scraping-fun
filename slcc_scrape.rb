@@ -33,7 +33,7 @@ password = "P0wder??"
 #setting agent 
 agent = Mechanize.new
 #setting login alias 
-agent.user_agent_alias = 'Windows Chrome'
+agent.user_agent_alias = 'Mac Firefox'
 #avoiding auth ????
 agent.add_auth('https://www.slcc.edu/', username, password)
 
