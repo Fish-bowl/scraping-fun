@@ -3,6 +3,7 @@
 require 'pry'
 require 'mechanize'
 require 'rubygems'
+require 'csv'
 #setting search terms
 numbers_value = "541620 326191 562991 423850"
 narrow_value = "bathroom toilet outhouse portapotty restroom"
@@ -16,7 +17,6 @@ page = agent.get('https://www.fbo.gov/?s=opportunity&mode=list&tab=list')
 # select_list.option_with(:value => "^0-9.").each do |field|
 #   field_value = '100'
 # end 
-binding.pry
 #setting form for the search terms 
 form = page.form("search_filters")
 #setting values
@@ -25,7 +25,15 @@ main_form = form.fields.first.value=narrow_value
 button = form.button_with(:value => "search")
 #submitting form 
 agent.submit(form, button)
+page.links.each {|link| puts link}
+page = agent.page.link_with(:text => '»') 
 
+CSV.open("contracts.csv" "w") do |csv|
+  csv << []
+  csv << []
+end 
+
+binding.pry
 
 
 # page.links.each do |link|
