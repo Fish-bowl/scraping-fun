@@ -25,13 +25,17 @@ main_form = form.fields.first.value=narrow_value
 button = form.button_with(:value => "search")
 #submitting form 
 agent.submit(form, button)
-page.links.each {|link| puts link}
+
+current_url = agent.page.uri
+
+all_links = page.links.each {|link| puts link}
+
 page = agent.page.link_with(:text => '»') 
 
-CSV.open("contracts.csv" "w") do |csv|
-  csv << []
-  csv << []
-end 
+# CSV.open("contracts.csv" "ab") do |csv|
+#   csv << []
+#   csv << []
+# end 
 
 binding.pry
 

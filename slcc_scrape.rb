@@ -27,8 +27,7 @@
 require 'rubygems'
 require 'mechanize'
 require 'pry'
-username = "mwhita14"
-password = "P0wder??" 
+
 
 #setting agent 
 agent = Mechanize.new
