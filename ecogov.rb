@@ -4,6 +4,7 @@ require 'pry'
 require 'mechanize'
 require 'rubygems'
 require 'csv'
+require 'open-uri'
 #setting search terms
 numbers_value = "541620 326191 562991 423850"
 narrow_value = "bathroom toilet outhouse portapotty restroom"
@@ -14,9 +15,6 @@ agent.user_agent_alias = "Mac Firefox"
 page = agent.get('https://www.fbo.gov/?s=opportunity&mode=list&tab=list')
 
 
-# select_list.option_with(:value => "^0-9.").each do |field|
-#   field_value = '100'
-# end 
 #setting form for the search terms 
 form = page.form("search_filters")
 #setting values
@@ -26,11 +24,27 @@ button = form.button_with(:value => "search")
 #submitting form 
 agent.submit(form, button)
 
-current_url = agent.page.uri
+# def crawl
+#   current_url = agent.page.uri.to_s
 
-all_links = page.links.each {|link| puts link}
+#   document = open(current_url)
+#   content = document.read 
+#   @parsed_content = Nokogiri::HTML(content)
 
-page = agent.page.link_with(:text => '»') 
+#   @unsorted_contracts = Array.new
+
+#   @parsed_content.css('lst-rw').css('tr').each do |tr|
+#     @unsorted_contracts << td.text 
+#   end 
+# end
+
+html = Nokogiri::HTML(open(agent.page.uri))
+puts '-' * 50
+puts html.at_css("list")
+puts "-" * 50
+# all_links = page.links.each {|link| puts link}
+
+# page = agent.page.link_with(:text => '»') 
 
 # CSV.open("contracts.csv" "ab") do |csv|
 #   csv << []
