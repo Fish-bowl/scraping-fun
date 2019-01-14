@@ -12,9 +12,9 @@ agent.user_agent_alias = "Mac Firefox"
 
 page = agent.get('https://www.fbo.gov/?s=opportunity&mode=list&tab=list')
 
-# binding.pry
-# select = page.form.field_with(:name => 'setPerPage').options[3].select
-select.value = select_with(:name => 'setPerPage').options.last.value
+select.value = select_list.option_with(:value => /1|2/).each do |field|
+  field_value = '100'
+end 
 binding.pry
 form = page.form("search_filters")
 main_form = form.fields.first.value=narrow_value
