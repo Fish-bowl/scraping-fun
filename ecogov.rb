@@ -22,7 +22,7 @@ main_form = form.fields.first.value=narrow_value
 #setting submit button
 button = form.button_with(:value => "search")
 #submitting form 
-agent.submit(form, button)
+page = agent.submit(form, button)
 
 # def crawl
 #   current_url = agent.page.uri.to_s
@@ -37,41 +37,31 @@ agent.submit(form, button)
 #     @unsorted_contracts << td.text 
 #   end 
 # end
+# page.links.each do |link|
+#   if link.include?('Department')
+#     puts link 
+#   else 
+#     puts 'no link'
+#   end
+# end  
 
-html = Nokogiri::HTML(open(agent.page.uri))
-puts '-' * 50
-puts html.at_css("list")
-puts "-" * 50
-# all_links = page.links.each {|link| puts link}
+# doc = Nokogiri::HTML(open(agent.page.uri))
+@contracts = page.css('table')[6].text
 
-# page = agent.page.link_with(:text => '»') 
 
-# CSV.open("contracts.csv" "ab") do |csv|
-#   csv << []
-#   csv << []
+# def creator 
+#   @contracts.each do |contract|
+#     puts '*' * 20
+#     puts contract
+#     puts '*' * 20
+#   end 
 # end 
+
+puts '-' * 50
 
 binding.pry
+# creator
+pp @contracts
 
 
-# page.links.each do |link|
-#   puts link.text
-# end 
-# binding.pry
-
-# page.forms.each do |form|
-#   puts form
-# end
-# puts main_form
-# main_form.submit
-# binding.pry
-# binding.pry
-# pretty = pp page
-# pp page
-# main_form.value = "541620 326191 562991 423850".submit
-# page = agent.submit(main_form)
-# binding.pry
-# search_field.values = '541620'
-# form.q = '541620'
-# pp form 
-# pp page
+puts "-" * 50
