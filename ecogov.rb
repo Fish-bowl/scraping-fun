@@ -46,21 +46,26 @@ page = agent.submit(form, button)
 # end  
 
 # doc = Nokogiri::HTML(open(agent.page.uri))
-@contracts = page.css('table')[6].text
+@contracts = page.css('table')[6]
 
+doc = Nokogiri::XML(@contracts, <table>) do |config|
+  config.strict.noblanks
+end 
 
-# def creator 
-#   @contracts.each do |contract|
-#     puts '*' * 20
-#     puts contract
-#     puts '*' * 20
-#   end 
-# end 
+binding.pry
+
+def creator 
+  @contracts.each do |contract|
+    puts '*' * 20
+    puts contract.split('\n')
+    puts '*' * 20
+  end 
+end 
 
 puts '-' * 50
 
-binding.pry
-# creator
+# binding.pry
+creator
 pp @contracts
 
 
