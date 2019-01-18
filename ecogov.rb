@@ -48,10 +48,10 @@ page = agent.submit(form, button)
 # doc = Nokogiri::HTML(open(agent.page.uri))
 @contracts = page.css('table')[6]
 
-doc = Nokogiri::XML(@contracts, <table>) do |config|
-  config.strict.noblanks
-end 
+@con_arr = Array.new 
 
+@contracts << @con_arra
+ 
 binding.pry
 
 def creator 
