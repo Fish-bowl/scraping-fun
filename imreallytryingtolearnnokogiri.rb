@@ -41,7 +41,9 @@ class Scraper
 
   scraper = Scraper.new
   content = scraper.get_content
-
+  (0...content).each do |index|
+    puts "--- index: #{index +1} ---"
+    puts content
+  end 
 end 
-
 # main
