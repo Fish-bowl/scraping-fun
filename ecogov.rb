@@ -46,11 +46,11 @@ page = agent.submit(form, button)
 # end  
 
 # doc = Nokogiri::HTML(open(agent.page.uri))
-@contracts = page.css('table')[6]
+doc = page.css('table')[6]
 
 @con_arr = Array.new 
 
-@contracts << @con_arra
+# doc << @con_arr
  
 binding.pry
 
