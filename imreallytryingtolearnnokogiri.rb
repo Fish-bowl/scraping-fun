@@ -27,10 +27,12 @@ class Scraper
   def initialize 
     doc = HTTParty.get("https://www.fbo.gov/index.php?s=opportunity&mode=list&tab=list&tabmode=list&pp=100")
     @parse_page ||= Nokogiri::HTML(doc)
+    puts 'Welcome to the scraper'.colorize(:purple)
+    puts "this is a practice session for all advanced nokogiri"
   end
 
   def get_content 
-    content = item_container.xml(<table>)
+    content = item_container.xml(<table> </table>)
   end 
 
 
