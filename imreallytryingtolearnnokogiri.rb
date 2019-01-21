@@ -2,6 +2,7 @@ require 'rubygems'
 require 'mechanize'
 require 'HTTParty'
 require 'colorize'
+require 'pry'
 
 # def main 
 #   puts "Welcome to the scraper".colorize(:red)
@@ -29,7 +30,7 @@ class Scraper
   end
 
   def get_content 
-    content = item_container.css('lst-rw')
+    content = item_container.xml(<table>)
   end 
 
 
@@ -41,7 +42,8 @@ class Scraper
 
   scraper = Scraper.new
   content = scraper.get_content
-  (0...content).each do |index|
+  binding.pry
+  (content).each do |index|
     puts "--- index: #{index +1} ---"
     puts content
   end 
